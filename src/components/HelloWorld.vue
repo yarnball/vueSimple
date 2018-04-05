@@ -1,5 +1,8 @@
 <template>
   <div class="hello">
+    {{ $store.state.count }}
+    <br/>
+    <br/>
     Yo!!!
     {{ name }} 
     <br/>
