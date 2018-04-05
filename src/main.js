@@ -9,27 +9,46 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 Vue.config.productionTip = false
-
+const URL =
+  "https://itunes.apple.com/search?term=Doctor%20Who&media=music&entity=album";
 const store = new Vuex.Store({
   state: {
-    count: 0
+    count: 0,
+    text: 'things',
+    json: ''
   },
   mutations: {
     INCREMENT (state) {
       state.count += 1
     },
-    DECREMENT (state) {
+    DECREMENT (state, passedVal) {
+    	console.log('vuex',passedVal)
       state.count -= 1
     },
-    RESET (state) {
-      state.count = 0
-    }
+    UPDATETEXT (state, val) {
+      state.text = 'OTHER'
+    },
+ 	GETDATA (state, val) {
+      state.json = val
+    },
   },
   actions: {
     asyncIncrement ({ commit }) {
       setTimeout(() => {
-        commit('INCREMENT')
+        commit('UPDATETEXT')
       }, 1000)
+    },
+    setJSON ({ commit }) {
+      fetch(URL)
+    .then(r => {
+      if (r.ok) {
+        return r.json();
+      } else {
+        throw new Error("Couldn't obtain information from the service");
+      }
+    })
+    .then(json => commit('GETDATA', JSON.stringify(json.results)))
+    .catch(err => console.error(err.message));
     }
   }
 })

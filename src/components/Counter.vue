@@ -18,7 +18,7 @@
         this.$store.commit('INCREMENT')
       },
       decrement () {
-        this.$store.commit('DECREMENT')
+        this.$store.commit('DECREMENT', 'Pass this please!')
       },
       asyncIncrement () {
         this.$store.dispatch('asyncIncrement')

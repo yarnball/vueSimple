@@ -1,7 +1,14 @@
 <template>
-  <div class="hello">
+  <div>
     {{ $store.state.count }}
     <br/>
+    {{ $store.state.text }}
+    <br/>
+    <button @click="textUpd">Chang text</button>
+
+    <br/>
+    <button @click="updJSON">SET JSON</button>
+    {{ $store.state.json }}
     <br/>
     Yo!!!
     {{ name }} 
@@ -11,7 +18,7 @@
     <input type="text" name="words" id="cut_cover" placeholder="Blah!" v-model="words" text>
     <br/>
     <br/>
-      <h2>Total: {{ total }}</h2>
+      <h2 class="hello">Total: {{ total }}</h2>
   <br/>
 <input type="number" name="text1" id="cut_text" placeholder="e.g. '0.00' " value="" v-model="text1" number>
 <input type="number" name="text2" id="cut_cover" placeholder="e.g. '0.00' " value="" v-model="text2" number>
@@ -29,6 +36,14 @@ export default {
       words: ""
     }
   },
+  methods: {
+      textUpd () {
+        this.$store.commit('UPDATETEXT')
+      },
+      updJSON () {
+        this.$store.dispatch('setJSON')
+      }
+    },
   computed: {
     total: function() {
       return Number.parseInt(this.text1) + Number.parseInt(this.text2)
