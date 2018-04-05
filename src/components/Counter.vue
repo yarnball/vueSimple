@@ -5,6 +5,8 @@
   </br>
     <button @click="increment">UP count</button>
     <button @click="decrement">Down count</button>
+    <br/>
+    <button @click="asyncIncrement">Async! (Wait for call back!!)</button>
   </div>
 </template>
 
@@ -17,6 +19,9 @@
       },
       decrement () {
         this.$store.commit('DECREMENT')
+      },
+      asyncIncrement () {
+        this.$store.dispatch('asyncIncrement')
       }
     }
   }
