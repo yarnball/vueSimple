@@ -36,7 +36,8 @@ const actions = {
     try {
       let response = await fetch(URL)
       let json = await response.json()
-      commit('GETDATA', JSON.stringify(json))
+      console.log('got data!', json.results)
+      commit('GETDATA', json.results)
     } catch (e) {
       console.log('BAD', e.message)
       return e.message
