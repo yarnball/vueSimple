@@ -2,7 +2,7 @@
 <div id="app">
   <router-link v-bind:to="'/'"> <img class='centreThis' src="./assets/logo.png"></router-link>
   <router-view/>
-  <router-link v-for="link in avLinks.filter(lnk=>lnk.showInNav)" :key="link.name" v-bind:to="link.name">{{link.name}} </router-link>
+  <router-link v-for="link in avLinks.filter(lnk=>lnk.showInNav)" :key="link.name" v-bind:to="'/' + link.name">{{link.name}} </router-link>
 </div>
 
 </template>
