@@ -25,25 +25,30 @@
 
   <h2 class="hello">Total: {{ total }}</h2>
   <br/>
-  <input type="number"
-         name="text1"
-         id="cut_text"
-         placeholder="e.g. '0.00' "
-         value=""
-         v-model="text1"
-         number>
-  <input type="number"
-         name="text2"
-         id="cut_cover"
-         placeholder="e.g. '0.00' "
-         value=""
-         v-model="text2"
-         number>
+
+    <input type="number"
+           name="text1"
+           id="cut_text"
+           placeholder="e.g. '0.00' "
+           value=""
+           v-model="text1"
+           number>
+
+    <input type="number"
+           name="text2"
+           id="cut_cover"
+           placeholder="e.g. '0.00' "
+           value=""
+           v-model="text2"
+           number>
+
 </div>
 
 </template>
 
 <script>
+import numeral from 'numeral'
+
 export default {
   name: 'HelloWorld',
   data () {
@@ -63,12 +68,17 @@ export default {
     }
   },
   computed: {
-    total: function () {
-      // WOULD THIS WORK THE SAME?
-      // total () {
-      return Number.parseInt(this.text1) + Number.parseInt(this.text2)
+    total () {
+      const num = Number.parseInt(this.text1) + Number.parseInt(this.text2)
+      let res = 0
+      if (num < 1000) {
+        res = num
+      } else {
+        res = numeral(num).format('0.0a')
+      }
+      return res
     },
-    worder: function () {
+    worder () {
       return this.words
     }
   }

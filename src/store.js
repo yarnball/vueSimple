@@ -4,6 +4,14 @@ Vue.use(Vuex)
 
 const URL = 'https://itunes.apple.com/search?term=Doctor%20Who&media=music&entity=album'
 
+var answers = [
+  'Apple',
+  'Banana',
+  'Pear',
+  'Orange',
+  'Avacado'
+]
+
 const state = {
   count: 0,
   text: 'things',
@@ -41,7 +49,7 @@ const actions = {
         artistId: itm.artistId,
         artistName: itm.artistName,
         collectionId: itm.collectionId,
-        testArea: [{name: 'super'}]
+        testArea: [{name: answers[Math.floor(Math.random() * answers.length)]}]
       }))
 
       )
