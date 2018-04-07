@@ -7,7 +7,7 @@ const URL = 'https://itunes.apple.com/search?term=Doctor%20Who&media=music&entit
 const state = {
   count: 0,
   text: 'things',
-  json: ''
+  apiResults: ''
 }
 
 const mutations = {
@@ -22,7 +22,7 @@ const mutations = {
     state.text = 'OTHER'
   },
   GETDATA (state, val) {
-    state.json = val
+    state.apiResults = val
   }
 }
 
@@ -37,7 +37,13 @@ const actions = {
       let response = await fetch(URL)
       let json = await response.json()
       console.log('got data!', json.results)
-      commit('GETDATA', json.results)
+      commit('GETDATA', json.results.slice(0, 3).map(itm => ({
+        artistId: itm.artistId,
+        artistName: itm.artistName,
+        collectionId: itm.collectionId
+      }))
+
+      )
     } catch (e) {
       console.log('BAD', e.message)
       return e.message

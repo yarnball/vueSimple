@@ -5,19 +5,23 @@
   <br/>
   <button @click="textUpd">Chang text</button>
   <br/>
-  <button @click="updJSON">SET JSON</button>
-  {{ $store.state.json }}
-  <br/> Yo!!! {{ name }}
+    <br/> Yo!!! {{ name }}
   <br/> {{ words }}
   <br/>
-  <input type="text"
+  <br/>
+  {{$store.state.apiResults}}
+  <button @click="updJSON">SET JSON</button>
+  <ul v-for="(apiResult, index) in $store.state.apiResults"
+      v-bind:key="index">
+      <input type="text"
          name="words"
          id="cut_cover"
-         placeholder="Blah!"
-         v-model="words"
+         placeholder="Put"
+         v-model="apiResult.artistName"
          text>
-  <br/>
-  <br/>
+     {{ apiResult.collectionId }}
+  </ul>
+
   <h2 class="hello">Total: {{ total }}</h2>
   <br/>
   <input type="number"
@@ -59,8 +63,8 @@ export default {
   },
   computed: {
     total: function () {
-    // WOULD THIS WORK THE SAME?
-    // total () {
+      // WOULD THIS WORK THE SAME?
+      // total () {
       return Number.parseInt(this.text1) + Number.parseInt(this.text2)
     },
     worder: function () {
