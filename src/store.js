@@ -40,7 +40,8 @@ const actions = {
       commit('GETDATA', json.results.slice(0, 3).map(itm => ({
         artistId: itm.artistId,
         artistName: itm.artistName,
-        collectionId: itm.collectionId
+        collectionId: itm.collectionId,
+        testArea: [{name: 'super'}]
       }))
 
       )

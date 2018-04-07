@@ -19,7 +19,8 @@
          placeholder="Put"
          v-model="apiResult.artistName"
          text>
-     {{ apiResult.collectionId }}
+
+  <input v-for="(innerData, index) in apiResult.testArea" v-bind:key="index" v-model="innerData.name">
   </ul>
 
   <h2 class="hello">Total: {{ total }}</h2>
