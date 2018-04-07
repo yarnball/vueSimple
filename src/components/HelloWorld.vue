@@ -59,6 +59,8 @@ export default {
   },
   computed: {
     total: function () {
+    // WOULD THIS WORK THE SAME?
+    // total () {
       return Number.parseInt(this.text1) + Number.parseInt(this.text2)
     },
     worder: function () {
