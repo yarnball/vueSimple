@@ -1,15 +1,21 @@
 <template>
 <div id="app">
-  <img src="./assets/logo.png">
+  <router-link v-bind:to="'/'"> <img class='centreThis' src="./assets/logo.png"></router-link>
   <router-view/>
-  <router-link v-bind:to="'counter'">counter</router-link>
+  <router-link v-for="link in avLinks.filter(lnk=>lnk.showInNav)" :key="link.name" v-bind:to="link.name">{{link.name}} </router-link>
 </div>
 
 </template>
 
 <script>
+import { links } from './router'
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      avLinks: links
+    }
+  }
 }
 
 </script>
@@ -19,12 +25,10 @@ export default {
 </style>
 
 <style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
+.centreThis{
+    text-align:center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
 </style>

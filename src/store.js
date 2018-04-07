@@ -45,10 +45,12 @@ const actions = {
       let response = await fetch(URL)
       let json = await response.json()
       console.log('got data!', json.results)
-      commit('GETDATA', json.results.slice(0, 3).map(itm => ({
+      commit('GETDATA', json.results.map(itm => ({
         artistId: itm.artistId,
         artistName: itm.artistName,
         collectionId: itm.collectionId,
+        amgArtistId: itm.amgArtistId,
+        artworkUrl100: itm.artworkUrl100,
         testArea: [{name: answers[Math.floor(Math.random() * answers.length)]}]
       }))
 

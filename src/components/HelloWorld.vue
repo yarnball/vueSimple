@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="centreThis">
   {{ $store.state.count }}
   <br/> {{ $store.state.text }}
   <br/>
@@ -9,9 +9,9 @@
   <br/> {{ words }}
   <br/>
   <br/>
-  {{$store.state.apiResults}}
+  {{$store.state.apiResults.slice(0,4)}}
   <button @click="updJSON">SET JSON</button>
-  <ul v-for="(apiResult, index) in $store.state.apiResults"
+  <ul v-for="(apiResult, index) in $store.state.apiResults.slice(0,4)"
       v-bind:key="index">
       <input type="text"
          name="words"
@@ -23,7 +23,7 @@
   <input v-for="(innerData, index) in apiResult.testArea" v-bind:key="index" v-model="innerData.name">
   </ul>
 
-  <h2 class="hello">Total: {{ total }}</h2>
+  <h2>Total: {{ total }}</h2>
   <br/>
 
     <input type="number"
@@ -73,8 +73,10 @@ export default {
       let res = 0
       if (num < 1000) {
         res = num
-      } else {
+      } else if (num < 100000) {
         res = numeral(num).format('0.0a')
+      } else {
+        res = numeral(num).format('0.00a')
       }
       return res
     },
@@ -85,24 +87,3 @@ export default {
 }
 
 </script>
-
-<style scoped="">
-h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
