@@ -14,11 +14,12 @@ export const links = [{
   showInNav: false
 },
 {
-  path: '/counter/:id',
+  path: '/counter/',
   name: 'counter',
   component: Counter,
   showInNav: true,
-  props: true
+  props: (route) => ({ query: route.query.q })
+  // props: true
 },
 {
   path: '/drag',

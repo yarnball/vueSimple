@@ -6,7 +6,7 @@
   <br/>
   <button @click="asyncIncrement">Async! (Wait for call back!!)</button>
 
-  {{ $route.params.id }}
+  {{ $route.query }}
 </div>
 
 </template>
