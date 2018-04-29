@@ -16,8 +16,8 @@ export default {
   name: 'Counter',
   methods: {
     increment () {
-      this.$store.commit('INCREMENT'),
-      this.$router.push({name: 'counter', query : {'count': this.$store.state.count} });
+      this.$store.commit('INCREMENT')
+      this.$router.push({name: 'counter', query: {'count': this.$store.state.count}})
     },
     decrement () {
       this.$store.commit('DECREMENT', 'Pass this please!')
